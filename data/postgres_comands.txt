@@ -1,0 +1,27 @@
+Postgresql
+Superuser pass : Postgresql.2996
+port : 5432
+
+
+Commands:
+
+open prompt :
+$ psql --username=postgres 
+
+import sqldump :
+$ psql database_name < dump.sql
+
+
+------------ inside postgres shell -----------------
+show databases:
+# \l
+
+use database:
+# \c database_name
+
+show tables:
+# \dt
+
+quit shell :
+# \q
+
