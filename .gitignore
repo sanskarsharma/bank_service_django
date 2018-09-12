@@ -1,1 +1,5 @@
 virtualenv 
+.idea/ 
+bank_service/bank_service/__pycache__/ 
+bank_service/bank_finder_app/__pycache__/ 
+bank_service/bank_finder_app/migrations/__pycache__/ 
