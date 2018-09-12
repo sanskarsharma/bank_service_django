@@ -82,7 +82,7 @@ DATABASES = {
         'NAME' : "demo_db",
         'USER': 'postgres',
         'PASSWORD': 'Postgresql.2996',
-        'HOST': '127.0.0.1',
+        'HOST': 'ec2-54-83-4-76.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
