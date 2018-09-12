@@ -1,0 +1,154 @@
+{% extends "bank_finder_app/base.html" %}
+
+{% block content %}
+
+
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#ifsc_tab">IFSC</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#branches_tab">Branches</a>
+      </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+
+      <div class="tab-pane container active" id="ifsc_tab">
+
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                      <label for="ifsc_code_inp">Enter IFSC code :</label>
+                      <input type="text" class="form-control" id="ifsc_code_inp" >
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-2">
+                     <button class="btn btn-outline-primary" id= "get_branch_details" >Get Branch Details</button>
+                </div>
+
+            </div>
+
+
+
+            <br><br>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                   <div class="card" id="response_card">
+                      <div class="card-body">
+                        <h4 class="card-title" id="data_title"> .. </h4>
+                        <p class="card-text" id="data_detail">
+                            ....
+                        </p>
+                        <a href="#" class="card-link">Open in Maps</a>
+                        <a href="#" class="card-link">Another link</a>
+                      </div>
+                   </div>
+
+                </div>
+
+            </div>
+
+
+
+
+      </div>
+
+
+      <div class="tab-pane container fade" id="branches_tab">
+
+
+
+
+          <br>
+
+           <div class="row">
+
+                <div class="col-md-6">
+                      <label for="bank_name">Enter Bank name :</label>
+                      <input type="text" class="form-control" id="bank_name" >
+                </div>
+
+           </div>
+           <div class="row">
+
+                <div class="col-md-6">
+                      <label for="city">Enter City :</label>
+                      <input type="text" class="form-control" id="city" >
+                </div>
+
+           </div>
+
+
+
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-2">
+                     <button class="btn btn-outline-primary" id= "get_all_branches" >Get All Branches</button>
+                </div>
+
+            </div>
+
+
+
+            <br><br>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+
+                  <ul class="list-group" id="all_branches_list">
+
+                  </ul>
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

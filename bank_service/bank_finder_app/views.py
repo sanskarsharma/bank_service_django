@@ -1,4 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -11,10 +12,10 @@ from .serializers import BanksSerializer, BranchesSerializer
 
 def apphome(request):
 
-    banks = Banks.objects.first()
-    response_dict = {}
-    response_dict["bankee"] = banks.name
-    return HttpResponse(json.dumps(response_dict))
+    context = {}
+    context["title"] = " BankFinder"
+
+    return render(request, "bank_finder_app/home.html", context)
 
 
 class BranchView(APIView):

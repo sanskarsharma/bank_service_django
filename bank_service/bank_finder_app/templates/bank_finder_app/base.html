@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+     <title>
+        {%  if title %}
+        {{title}}
+        {% else %}
+        Bank Finder Service
+        {% endif %}
+    </title>
+
+
+</head>
+<body>
+
+{% block navbar %}
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">bank Finder service</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar" >
+    <ul class="navbar-nav" >
+      <li class="nav-item" >
+        <a class="nav-link" data-toggle="modal" href="#modal_about_project">About</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+{% endblock %}
+
+
+<br>
+
+ <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                {% block content %}
+
+                {% endblock %}
+
+            </div>
+        </div>
+ </div>
+
+
+
+
+<div id="modal_about_project" class="modal fade">
+        <div class="modal-dialog  ">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            About this app
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        This is an api based url shortener service with bulk link generation and link access counter.
+                        <br>
+                        It is made upon python flask framework
+                        <br>
+                        Its an open source project. <a href="https://github.com/sanskarsharma/minion">Visit repo</a>
+                        <br>
+                        Developed by <a href="https://github.com/sanskarsharma">sanskarsharma</a>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+
+        </div>
+    </div>
+
+
+<script>
+
+     $(document).ready(function(){
+
+        document.getElementById("response_card").hidden = true;
+
+        $("#get_branch_details").click(function(){
+            console.log("CLICKKEEEEEEEEED")
+
+
+            ifsc_code = document.getElementById("ifsc_code_inp").value;
+            console.log(ifsc_code)
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                      console.log(this.responseText);
+                      var res=JSON.parse(this.responseText);
+                      // $("#response_text").attr("href", "http://"+res['short_url']);
+
+                      document.getElementById("response_card").hidden = false;
+                      document.getElementById('data_title').innerHTML=res["bank"]["name"] ;
+                      detail_str =  "City : " + res["city"] + "<br>" + "District : " + res["district"] + "<br>"
+                      detail_str = detail_str + "State : " + res["state"] + "<br>" + "Address : " + res["address"] + "<br>"
+
+                      detail_str = detail_str + "Branch : " + res["branch"] + "<br>" + "IFSC Code: " + res["ifsc"] + "<br>"
+
+                      document.getElementById('data_detail').innerHTML= detail_str ;
+
+
+                }else{
+                      document.getElementById("response_card").hidden = true;
+                }
+            };
+            // var parm='ifsc_code=' + long_url;
+            xhttp.open("GET", "/app/branch/"+ifsc_code, false);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send();
+
+
+
+        });
+
+
+
+
+         $("#get_all_branches").click(function(){
+            console.log("CLICKKEEEEEEEEED")
+
+
+            city = document.getElementById("city").value;
+            console.log(city)
+            bank_name = document.getElementById("bank_name").value;
+            console.log(bank_name)
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+
+                    var res=JSON.parse(this.responseText);
+
+                    var response_html_content = "";
+                    $.each(res, function (i, v) {
+                                        //list += '<li class="page" id="'+i+'">' + '<a>' + v.name + '</a></li>'
+                        console.log(v);
+                        var item_details = "Branch : " + v['branch'] + "<br>" + "IFSC Code : " + v['ifsc'] + "<br>"  ;            //,, state
+                        item_details = item_details + "District : " + v['district'] + "<br>" + "Address : " + v['address'] + "<br>";
+
+                        var list_item= '<li class="list-group-item">' + item_details + '</li>' ;
+
+                        response_html_content = response_html_content + list_item;
+
+                    });
+
+                    document.getElementById('all_branches_list').innerHTML= response_html_content ;
+
+
+
+                }else{
+
+                }
+            };
+            var param_string='bank_name=' + bank_name + '&city=' + city;
+            xhttp.open("GET", "/app/branches/?"+param_string , false);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send();
+
+
+
+         });
+
+
+
+
+
+
+
+     });
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

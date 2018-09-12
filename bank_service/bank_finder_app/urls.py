@@ -5,7 +5,7 @@ from . import views
 
 app_name = "bank_finder_app"
 urlpatterns = [
-    path('', views.apphome, name="home"),
+    path('', views.apphome, name="apphome"),
     path('branch/<str:ifsc_code>', views.BranchView.as_view(), name="branch"),
     path('branches/', views.BranchListView.as_view(), name="branches"),
 
