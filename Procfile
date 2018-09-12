@@ -1,1 +1,1 @@
-web: gunicorn bankservice.bankservice.wsgi:application
+web: gunicorn bank_service.bank_service.wsgi:application
