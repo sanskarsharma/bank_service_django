@@ -1,1 +1,1 @@
-web: gunicorn bank_service.bank_service.wsgi:application
+web: gunicorn --pythonpath bank_service bank_service.wsgi:application

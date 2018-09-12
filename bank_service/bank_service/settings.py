@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bank_service.bank_finder_app',
+    'bank_finder_app',
 
     'rest_framework'
 ]
