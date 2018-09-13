@@ -173,7 +173,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
 
-                    document.getElementById("all_branches_list").hidden = true;
+                    document.getElementById("all_branches_list").hidden = false;
                     var res=JSON.parse(this.responseText);
 
                     var response_html_content = "";
