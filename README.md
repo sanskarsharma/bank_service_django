@@ -1,7 +1,7 @@
 # Bank Finder app
 
 This is a webapp for finding bank branches in a city or looking up bank branches details by IFSC code.
-It is live on : https://damp-brushlands-95623.herokuapp.com
+It is live on : https://bankservice.herokuapp.com
 
 ## About project
 - made upon python Django-REST framework.
