@@ -143,7 +143,7 @@
                         var res=JSON.parse(this.responseText);
                         $.alert({
                             title: 'Request could not be completed!',
-                            content: res['message'] + "<br> Response Status : " this.status,
+                            content: res['message'] + "<br> Response Status : " + this.status,
                         });
                 }
             };
