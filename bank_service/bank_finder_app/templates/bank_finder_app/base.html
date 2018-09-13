@@ -194,6 +194,13 @@
 
                 }else{
 
+                    document.getElementById("all_branches_list").hidden = true;
+                    var res=JSON.parse(this.responseText);
+                    $.alert({
+                        title: 'Request could not be completed!',
+                        content: res['message'] + "<br> Response Status : " + this.status,
+                    });
+
                 }
             };
             var param_string='bank_name=' + bank_name + '&city=' + city;
